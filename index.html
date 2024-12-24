@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: linear-gradient(-40deg, rgb(226, 31, 96), rgb(105, 231, 122), rgb(218, 47, 47));
+            background-size: 400% 400%;
+            animation: colorChange 6s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        @keyframes colorChange {
+            0%, 100% { background-color: rgb(240, 110, 110); }
+            50% { background-color: rgb(209, 60, 60); }
+        }
+
+        #carta {
+            width: 400px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: #fff;
+            border: 7px solid #a5220b; /* Un borde más grueso y color tomate */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            font-size: 20px;
+            margin-top: 1px;
+            margin-bottom: 55px;
+}
+        #arbol {
+            font-family: monospace;
+            color: green;
+            text-align: center;
+            margin-bottom: 20px;
+            white-space: pre;
+            font-size: 14px;
+        }
+
+        #carta button {
+            padding: 10px 20px;
+            background-color: #160e10;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #carta button:hover { background-color: #a00c0c; }
+
+        #corazon {
+            display: none;
+            text-align: center;
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: #f30000;
+            position: relative;
+            margin: 0 auto 10px;
+            transform: rotate(-45deg);
+            animation: latido 1s infinite;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: #f30000;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before { top: -50px; left: 0; }
+        .heart::after { left: 50px; top: 0; }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+        }
+
+        #mensaje {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+
+        .songs-list {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .song {
+            width: 300px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            color: #000000;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 7px solid #a5220b;
+        }
+
+        .song:hover { transform: scale(1.05); }
+
+        .song button {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 10px 15px;
+            background-color: #dd9b9b;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .song img {
+            display: block;  /* Hace que la imagen sea un bloque */
+            margin: 0 auto;  /* Centra la imagen horizontalmente */
+            max-width: 100%;  /* Asegura que la imagen no exceda el ancho del contenedor */
+            height: auto;  /* Mantiene la proporción de la imagen */
+}
+    </style>
+</head>
+<body>
+    <div id="carta">
+        <div id="arbol">
+🎄<br>
+🎄🎄🎄<br>
+🎄🎄🎄🎄🎄<br>
+🎄🎄🎄🎄🎄🎄🎄<br>
+🎄🎄🎄🎄🎄🎄🎄🎄🎄<br>
+🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄<br>
+🎁🎁
+        </div>
+        <p>🎄❤️ Carta Navideña ❤️🎄</p>
+        <button onclick="abrirCarta()">Abrir</button>
+    </div>
+
+    <div id="corazon">
+        <div class="heart"></div>
+        <p id="mensaje">Feliz Noche Buena Mi Niño Hermoso ❤️🎄</p>
+    </div>
+
+    <div class="songs-list" id="songsList">
+        <div class="song">
+            <h3>Preguntas</h3>
+            <img src="https://images.pexels.com/photos/29913703/pexels-photo-29913703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="ramo">
+            <button onclick="window.open('https://forms.gle/gwDznNQAMTeHh9GN6', '_blank')">Empezar</button>
+        </div>
+    </div>
+
+    <script>
+        function abrirCarta() {
+            document.getElementById('carta').style.display = 'none';
+            document.getElementById('corazon').style.display = 'block';
+            document.getElementById('songsList').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
