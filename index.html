@@ -12,6 +12,7 @@
             background-size: 400% 400%;
             animation: colorChange 6s ease infinite;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
@@ -24,9 +25,8 @@
 
         #carta {
             width: 400px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             background-color: #fff;
-            border: 7px solid #a5220b; /* Un borde más grueso y color tomate */
+            border: 7px solid #a5220b;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
@@ -34,11 +34,13 @@
             text-align: center;
             border-radius: 10px;
             padding: 20px;
-            position: relative;
             font-size: 20px;
-            margin-top: 1px;
-            margin-bottom: 55px;
-}
+            position: absolute;
+            top: 20%; /* Ajustar para que no tape el texto */
+            left: 50%;
+            transform: translate(-50%, -20%);
+        }
+
         #arbol {
             font-family: monospace;
             color: green;
@@ -63,32 +65,31 @@
         #corazon {
             display: none;
             text-align: center;
+            margin-top: 20px;
         }
 
         .heart {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             background-color: #f30000;
             position: relative;
-            margin: 0 auto 10px;
+            margin: 0 auto;
             transform: rotate(-45deg);
             animation: latido 1s infinite;
-            margin-top: 20px;
-            margin-bottom: 50px;
         }
 
         .heart::before,
         .heart::after {
             content: "";
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             background-color: #f30000;
             border-radius: 50%;
             position: absolute;
         }
 
-        .heart::before { top: -50px; left: 0; }
-        .heart::after { left: 50px; top: 0; }
+        .heart::before { top: -75px; left: 0; }
+        .heart::after { left: 75px; top: 0; }
 
         @keyframes latido {
             0%, 100% { transform: scale(1) rotate(-45deg); }
@@ -99,25 +100,27 @@
             font-size: 20px;
             color: #ffffff;
             font-weight: bold;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 20px;
+            margin-top: 20px;
         }
 
         .songs-list {
             display: none;
+            margin-top: 50px;
             width: 100%;
-            max-width: 800px;
             text-align: center;
         }
 
         .song {
-            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
             margin: 10px auto;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             color: #000000;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             padding: 20px;
             text-align: center;
             transition: transform 0.3s;
@@ -125,6 +128,13 @@
         }
 
         .song:hover { transform: scale(1.05); }
+
+        .song img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
 
         .song button {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -137,12 +147,6 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        .song img {
-            display: block;  /* Hace que la imagen sea un bloque */
-            margin: 0 auto;  /* Centra la imagen horizontalmente */
-            max-width: 100%;  /* Asegura que la imagen no exceda el ancho del contenedor */
-            height: auto;  /* Mantiene la proporción de la imagen */
-}
     </style>
 </head>
 <body>
@@ -177,7 +181,11 @@
         function abrirCarta() {
             document.getElementById('carta').style.display = 'none';
             document.getElementById('corazon').style.display = 'block';
-            document.getElementById('songsList').style.display = 'block';
+
+            // Retraso para mostrar la lista de canciones después del corazón
+            setTimeout(() => {
+                document.getElementById('songsList').style.display = 'block';
+            }, 1000); // Muestra después de 2 segundos
         }
     </script>
 </body>
